@@ -1,0 +1,96 @@
+<div class="page">
+
+  <mat-card class="form-card">
+
+    <div class="header">
+      <mat-icon class="main-icon">account_circle</mat-icon>
+      <h1>Create Profile</h1>
+      <p>Fill in your information below</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- Username -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput formControlName="username">
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix>email</mat-icon>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <!-- Gender -->
+      <div class="section">
+        <h3><mat-icon>groups</mat-icon> Gender</h3>
+        <mat-radio-group formControlName="gender" class="radio-group">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Address -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Address</mat-label>
+        <mat-icon matPrefix>home</mat-icon>
+        <input matInput formControlName="address">
+      </mat-form-field>
+
+      <!-- Birthdate -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Birth Date</mat-label>
+        <mat-icon matPrefix>calendar_today</mat-icon>
+        <input matInput [matDatepicker]="picker" formControlName="birthdate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Skill -->
+      <div class="section">
+        <h3><mat-icon>trending_up</mat-icon> Angular Skill Level</h3>
+
+        <p class="skill-value">{{ form.value.skill }}/10</p>
+
+        <div class="slider-container">
+          <mat-slider min="0" max="10" step="1" class="full-slider">
+            <input matSliderThumb formControlName="skill">
+          </mat-slider>
+        </div>
+      </div>
+
+      <!-- Checkbox -->
+      <mat-checkbox formControlName="terms" class="terms">
+        I agree to the terms and conditions
+      </mat-checkbox>
+
+      <!-- Submit -->
+      <button mat-raised-button color="primary" class="submit-btn"
+        type="submit"
+        [disabled]="form.invalid || loading">
+
+        <mat-icon>send</mat-icon>
+        Submit
+      </button>
+
+      <!-- Spinner -->
+      <div class="spinner" *ngIf="loading">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      </div>
+
+    </form>
+
+  </mat-card>
+
+</div>
